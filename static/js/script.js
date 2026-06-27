@@ -1,0 +1,1 @@
+console.log("DJ Empire Loaded Successfully!");
