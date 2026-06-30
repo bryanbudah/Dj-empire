@@ -1,9 +1,28 @@
-from django.http import HttpResponse
 from django.shortcuts import render
+
+from music.models import Mix
+from reviews.models import Review
 
 
 def home(request):
-    return render(request, "home.html")
+    featured_mixes = (
+        Mix.objects
+        .filter(featured=True)
+        .order_by("-uploaded_at")[:3]
+    )
+
+    latest_reviews = (
+        Review.objects
+        .filter(approved=True)
+        .order_by("-created_at")[:3]
+    )
+
+    context = {
+        "featured_mixes": featured_mixes,
+        "latest_reviews": latest_reviews,
+    }
+
+    return render(request, "home.html", context)
 
 
 def about(request):
@@ -20,4 +39,3 @@ def gallery(request):
 
 def contact(request):
     return render(request, "contact.html")
-

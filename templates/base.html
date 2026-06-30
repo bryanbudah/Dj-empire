@@ -1,9 +1,11 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>DJ Empire</title>
@@ -14,86 +16,41 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-
     <style>
-
         body{
-            font-family:'Poppins',sans-serif;
+            font-family:'Poppins', sans-serif;
         }
-
     </style>
 
 </head>
 
 <body class="bg-slate-50 text-slate-800">
 
-<nav class="bg-slate-900 shadow-xl">
+    <!-- Navigation -->
+    {% include "includes/navbar.html" %}
 
-<div class="max-w-7xl mx-auto px-6">
+    <!-- Django Messages -->
+    {% include "includes/messages.html" %}
 
-<div class="flex justify-between items-center h-20">
+    <!-- Main Content -->
+    <main>
 
-<a href="/"
-class="text-3xl font-extrabold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+        {% block content %}
+        {% endblock %}
 
-DJ Empire
+    </main>
 
-</a>
+    <!-- Footer -->
+    {% include "includes/footer.html" %}
 
-<div class="space-x-8 text-white font-medium">
+    <!-- JavaScript -->
+    {% include "includes/scripts.html" %}
 
-<a href="/" class="hover:text-purple-400 transition">Home</a>
-
-<a href="/about/" class="hover:text-purple-400 transition">About</a>
-
-<a href="/services/" class="hover:text-purple-400 transition">Services</a>
-
-<a href="/gallery/" class="hover:text-purple-400 transition">Gallery</a>
-
-<a href="/contact/" class="hover:text-purple-400 transition">Contact</a>
-
-</div>
-
-</div>
-
-</div>
-
-</nav>
-
-{% block content %}
-
-{% endblock %}
-
-<footer class="bg-slate-900 text-white mt-20">
-
-<div class="max-w-7xl mx-auto px-6 py-16 text-center">
-
-<h2 class="text-4xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-
-DJ Empire
-
-</h2>
-
-<p class="mt-5 text-gray-300">
-
-Professional DJ Entertainment for Weddings • Clubs • Festivals • Corporate Events
-
-</p>
-
-<p class="mt-8 text-gray-500">
-
-© 2026 DJ Empire. All Rights Reserved.
-
-</p>
-
-</div>
-
-</footer>
-<script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>
