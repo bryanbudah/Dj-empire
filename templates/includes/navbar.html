@@ -1,36 +1,73 @@
 <nav class="bg-slate-900 shadow-xl">
 
-<div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-7xl mx-auto px-6">
 
-<div class="flex justify-between items-center h-20">
+        <div class="flex justify-between items-center h-20">
 
-<a href="/"
-class="text-3xl font-extrabold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+            <!-- Logo -->
+            <a href="/"
+               class="text-3xl font-extrabold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                DJ Empire
+            </a>
 
-DJ Empire
+            <!-- Navigation Links -->
+            <div class="flex items-center space-x-8 text-white font-medium">
 
+                <a href="/" class="hover:text-purple-400 transition">Home</a>
+
+                <a href="/about/" class="hover:text-purple-400 transition">About</a>
+
+                <a href="/services/" class="hover:text-purple-400 transition">Services</a>
+
+                <a href="/mixes/" class="hover:text-purple-400 transition">Mixes</a>
+
+                <a href="/gallery/" class="hover:text-purple-400 transition">Gallery</a>
+
+                <a href="/booking/" class="hover:text-purple-400 transition">Book</a>
+
+                <a href="/contact/" class="hover:text-purple-400 transition">Contact</a>
+                <a href="{% url 'dashboard' %}"
+   class="hover:text-purple-400 transition">
+    Dashboard
 </a>
 
-<div class="space-x-8 text-white font-medium">
+                {% if user.is_authenticated %}
 
-<a href="/" class="hover:text-purple-400 transition">Home</a>
+                    <span class="text-purple-300">
+                        👋 {{ user.first_name|default:user.username }}
+                    </span>
 
-<a href="/about/" class="hover:text-purple-400 transition">About</a>
+                  <form method="post" action="{% url 'logout' %}" class="inline">
+    {% csrf_token %}
 
-<a href="/services/" class="hover:text-purple-400 transition">Services</a>
+    <button
+        type="submit"
+        class="bg-red-600 px-4 py-2 rounded-lg hover:bg-red-700 transition text-white">
 
-<a href="/mixes/" class="hover:text-purple-400 transition">Mixes</a>
+        Logout
 
-<a href="/gallery/" class="hover:text-purple-400 transition">Gallery</a>
+    </button>
 
-<a href="/booking/" class="hover:text-purple-400 transition">Book</a>
+</form> 
 
-<a href="/contact/" class="hover:text-purple-400 transition">Contact</a>
+                {% else %}
 
-</div>
+                    <a href="{% url 'login' %}"
+                       class="hover:text-purple-400 transition">
+                        Login
+                    </a>
 
-</div>
+                    <a href="{% url 'register' %}"
+                       class="bg-gradient-to-r from-purple-600 to-blue-600 px-4 py-2 rounded-lg hover:opacity-90 transition">
+                        Register
+                    </a>
 
-</div>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
 
 </nav>
