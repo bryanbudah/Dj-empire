@@ -265,10 +265,21 @@ class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-6
 
                 <div class="space-y-3">
 
-                    <p>
-                        <strong>Username:</strong>
-                        {{ user.username }}
-                    </p>
+                    <div class="mt-6">
+<div class="mt-6 flex flex-col gap-4">
+    <a href="{% url 'edit_profile' %}"
+       class="inline-block bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg">
+
+        ✏️ Edit Profile
+
+    </a>
+     <a href="{% url 'password_change' %}"
+       class="w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-lg transition">
+        🔒 Change Password
+
+    </a>
+
+</div>
 
                     <p>
                         <strong>Email:</strong>

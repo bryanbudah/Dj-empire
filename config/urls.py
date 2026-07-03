@@ -40,6 +40,7 @@ urlpatterns = [
         name="logout",
     ),
     path("dashboard/", include("dashboard.urls")),
+    path("reviews/", include("reviews.urls")),
 ]
 
 if settings.DEBUG:

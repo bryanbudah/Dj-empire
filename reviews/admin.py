@@ -1,6 +1,3 @@
-
-
-
 from django.contrib import admin
 from .models import Review
 
@@ -9,8 +6,8 @@ from .models import Review
 class ReviewAdmin(admin.ModelAdmin):
 
     list_display = (
-        "name",
-        "event",
+        "user",
+        "booking",
         "rating",
         "approved",
         "created_at",
@@ -26,6 +23,11 @@ class ReviewAdmin(admin.ModelAdmin):
     )
 
     search_fields = (
-        "name",
-        "event",
+        "user__username",
+        "comment",
     )
+
+    ordering = (
+        "-created_at",
+    )
+

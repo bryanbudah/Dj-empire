@@ -1,40 +1,47 @@
 from django.db import models
+from django.contrib.auth.models import User
+from booking.models import Booking
 
 
 class Review(models.Model):
 
     RATING_CHOICES = [
-        (5, "★★★★★"),
-        (4, "★★★★☆"),
-        (3, "★★★☆☆"),
-        (2, "★★☆☆☆"),
-        (1, "★☆☆☆☆"),
+        (1, "⭐"),
+        (2, "⭐⭐"),
+        (3, "⭐⭐⭐"),
+        (4, "⭐⭐⭐⭐"),
+        (5, "⭐⭐⭐⭐⭐"),
     ]
 
-    name = models.CharField(max_length=120)
+    booking = models.OneToOneField(
+        Booking,
+        on_delete=models.CASCADE,
+        related_name="review",
+    )
 
-    event = models.CharField(max_length=150)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="reviews",
+    )
+
+    rating = models.PositiveSmallIntegerField(
+        choices=RATING_CHOICES
+    )
 
     comment = models.TextField()
 
-    rating = models.IntegerField(
-        choices=RATING_CHOICES,
-        default=5,
-    )
-
-    image = models.ImageField(
-        upload_to="reviews/",
-        blank=True,
-        null=True,
-    )
-
     approved = models.BooleanField(
         default=False,
+        help_text="Approve this review before displaying it on the website."
     )
 
     created_at = models.DateTimeField(
-        auto_now_add=True,
+        auto_now_add=True
     )
 
+    class Meta:
+        ordering = ["-created_at"]
+
     def __str__(self):
-        return f"{self.name} ({self.rating}★)"
+        return f"{self.user.username} - {self.rating}★"

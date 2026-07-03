@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="bg-gradient-to-r from-purple-700 via-blue-700 to-slate-900 py-16">
+
+    <div class="max-w-4xl mx-auto px-6">
+
+        <h1 class="text-5xl font-bold text-white">
+            Leave a Review ⭐
+        </h1>
+
+        <p class="text-gray-300 mt-3">
+            We'd love to hear about your experience with DJ Empire.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="max-w-3xl mx-auto py-12 px-6">
+
+    <div class="bg-white rounded-2xl shadow-xl p-8">
+
+        <div class="mb-8">
+
+            <h2 class="text-2xl font-bold">
+                {{ booking.event_type }}
+            </h2>
+
+            <p class="text-gray-600 mt-2">
+                📅 {{ booking.event_date }}
+            </p>
+
+            <p class="text-gray-600">
+                📍 {{ booking.location }}
+            </p>
+
+        </div>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="mb-6">
+
+                <label class="block font-semibold mb-2">
+                    Rating
+                </label>
+
+                {{ form.rating }}
+
+            </div>
+
+            <div class="mb-6">
+
+                <label class="block font-semibold mb-2">
+                    Your Review
+                </label>
+
+                {{ form.comment }}
+
+            </div>
+
+            <button
+                type="submit"
+                class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg shadow-lg">
+
+                Submit Review ⭐
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}
