@@ -138,6 +138,110 @@ We transform ordinary events into unforgettable experiences.
 
 </section>
 
+<!-- ================= FEATURED TESTIMONIALS ================= -->
+<section class="bg-slate-100 py-20">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center mb-14">
+
+            <h2 class="text-4xl font-bold">
+                ❤️ What Our Clients Say
+            </h2>
+
+            <p class="text-gray-600 mt-4">
+                Real experiences from clients who trusted DJ Empire.
+            </p>
+
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            {% for review in latest_reviews %}
+
+            <div class="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition duration-300">
+
+                <div class="flex items-center gap-4">
+
+                    <div class="w-14 h-14 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white flex items-center justify-center text-xl font-bold">
+
+                        {{ review.user.first_name|first|default:review.user.username|first|upper }}
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="font-bold text-lg">
+
+                            {{ review.user.get_full_name|default:review.user.username }}
+
+                        </h3>
+
+                        <p class="text-gray-500 text-sm">
+
+                            {{ review.booking.event_type }}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="mt-5 text-2xl">
+
+                    {% if review.rating == 1 %}
+                        ⭐
+                    {% elif review.rating == 2 %}
+                        ⭐⭐
+                    {% elif review.rating == 3 %}
+                        ⭐⭐⭐
+                    {% elif review.rating == 4 %}
+                        ⭐⭐⭐⭐
+                    {% elif review.rating == 5 %}
+                        ⭐⭐⭐⭐⭐
+                    {% endif %}
+
+                </div>
+
+                <p class="mt-6 italic text-gray-700">
+
+                    "{{ review.comment|truncatewords:25 }}"
+
+                </p>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-span-3 text-center">
+
+                <p class="text-gray-500">
+
+                    Reviews will appear here soon.
+
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="text-center mt-12">
+
+            <a href="{% url 'testimonials' %}"
+               class="inline-block bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-xl shadow-lg transition">
+
+                ⭐ View All Testimonials
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
 <section class="bg-slate-900 text-white py-24">
 
 <div class="max-w-6xl mx-auto text-center">
@@ -165,5 +269,7 @@ Book Your Event
 </div>
 
 </section>
+
+
 
 {% endblock %}

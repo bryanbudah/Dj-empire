@@ -9,5 +9,10 @@ urlpatterns = [
         views.create_review,
         name="create_review",
     ),
+path(
+        "",
+        views.testimonials,
+        name="testimonials",
+    ),
 
 ]

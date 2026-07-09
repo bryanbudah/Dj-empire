@@ -65,3 +65,19 @@ def create_review(request, booking_id):
             "booking": booking,
         },
     )
+def testimonials(request):
+
+    reviews = Review.objects.filter(
+        approved=True
+    ).select_related(
+        "booking",
+        "user"
+    )
+
+    return render(
+        request,
+        "reviews/testimonials.html",
+        {
+            "reviews": reviews,
+        },
+    )

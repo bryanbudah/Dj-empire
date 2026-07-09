@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<section class="bg-gradient-to-r from-purple-700 via-blue-700 to-slate-900 py-20">
+
+    <div class="max-w-6xl mx-auto px-6 text-center">
+
+        <h1 class="text-5xl font-bold text-white">
+            ❤️ Client Testimonials
+        </h1>
+
+        <p class="text-gray-300 text-lg mt-5">
+            Real experiences from clients who trusted DJ Empire to make their events unforgettable.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="max-w-7xl mx-auto py-16 px-6">
+
+    {% if reviews %}
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        {% for review in reviews %}
+
+        <div class="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl hover:-translate-y-2 transition duration-300">
+
+            <!-- Customer -->
+            <div class="flex items-center gap-4">
+
+                <div class="w-14 h-14 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white flex items-center justify-center text-xl font-bold">
+
+                    {{ review.user.first_name|first|default:review.user.username|first|upper }}
+
+                </div>
+
+                <div>
+
+                    <h2 class="text-xl font-bold">
+
+                        {{ review.user.get_full_name|default:review.user.username }}
+
+                    </h2>
+
+                    <p class="text-gray-500 text-sm">
+
+                        {{ review.booking.event_type }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Event Date -->
+            <div class="mt-4 text-sm text-gray-400">
+
+                📅 {{ review.booking.event_date }}
+
+            </div>
+
+            <!-- Rating -->
+            <div class="mt-5 text-2xl">
+
+                {% if review.rating == 1 %}
+                    ⭐
+                {% elif review.rating == 2 %}
+                    ⭐⭐
+                {% elif review.rating == 3 %}
+                    ⭐⭐⭐
+                {% elif review.rating == 4 %}
+                    ⭐⭐⭐⭐
+                {% elif review.rating == 5 %}
+                    ⭐⭐⭐⭐⭐
+                {% endif %}
+
+            </div>
+
+            <!-- Review -->
+            <div class="mt-6">
+
+                <p class="italic text-gray-700 leading-relaxed">
+
+                    "{{ review.comment }}"
+
+                </p>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-8 pt-5 border-t text-sm text-purple-600 font-semibold">
+
+                ✔ Verified Client
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="bg-white rounded-2xl shadow-xl p-16 text-center">
+
+        <div class="text-6xl mb-6">
+            ⭐
+        </div>
+
+        <h2 class="text-3xl font-bold">
+
+            No Reviews Yet
+
+        </h2>
+
+        <p class="text-gray-500 mt-4">
+
+            Our clients' testimonials will appear here after their events.
+
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
