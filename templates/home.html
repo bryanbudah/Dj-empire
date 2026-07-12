@@ -2,49 +2,141 @@
 
 {% block content %}
 
-<section class="bg-gradient-to-r from-purple-700 via-blue-700 to-sky-500 text-white">
+{% load static %}
 
-<div class="max-w-7xl mx-auto px-6 py-36">
+<!-- HERO -->
 
-<h1 class="text-6xl md:text-7xl font-extrabold">
+<section class="relative min-h-screen flex items-center">
 
-Feel The Beat
+    <!-- Background Image -->
 
-</h1>
+    <img
+        src="{% static 'images/gallery/hero.jpg' %}"
+        class="absolute inset-0 w-full h-full object-cover"
+        alt="DJ CHOPPA_xL">
 
-<h2 class="text-5xl font-bold mt-3">
+    <!-- Overlay -->
 
-Experience DJ Empire
+    <div class="absolute inset-0 bg-black/70"></div>
 
-</h2>
+    <div class="relative z-10 max-w-7xl mx-auto px-6">
 
-<p class="mt-8 text-xl max-w-2xl leading-relaxed">
+        <div class="max-w-3xl">
 
-Creating unforgettable moments through world-class DJ entertainment for weddings, clubs, birthdays, festivals and corporate events.
+            <p class="uppercase tracking-[8px] text-purple-400 font-semibold">
 
-</p>
+                Premium DJ Entertainment
 
-<div class="mt-12 flex gap-5">
+            </p>
 
-<a href="#"
+            <h1 class="text-5xl md:text-8xl font-extrabold text-white mt-6">
 
-class="bg-white text-purple-700 px-8 py-4 rounded-xl font-bold shadow-xl hover:bg-slate-100 transition">
+                DJ CHOPPA_xL
 
-Book Now
+            </h1>
 
-</a>
+            <h2 class="text-2xl md:text-4xl text-purple-300 font-bold mt-4">
 
-<a href="#"
+                Feel The Beat. Own The Night.
 
-class="border-2 border-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-purple-700 transition">
+            </h2>
 
-Listen Live
+            <p class="mt-8 text-lg md:text-2xl text-gray-300 leading-relaxed">
 
-</a>
+                Weddings • Corporate Events • Clubs • Festivals • Birthdays • Private Parties
 
-</div>
+            </p>
 
-</div>
+            <div class="flex flex-col sm:flex-row gap-5 mt-12">
+
+                <a href="{% url 'booking' %}"
+
+                   class="bg-gradient-to-r from-purple-600 to-blue-600 px-8 py-4 rounded-xl font-bold text-white hover:scale-105 transition">
+
+                    🎧 Book DJ CHOPPA_xL
+
+                </a>
+
+                <a href="{% url 'mix_list' %}"
+
+                   class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-black transition">
+
+                    ▶ Listen To Mixes
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="bg-slate-900 py-20">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 text-center">
+
+            <div>
+
+                <h2 class="counter text-5xl md:text-6xl font-extrabold text-purple-400"
+                    data-target="150">
+                    0
+                </h2>
+
+                <p class="text-gray-300 mt-3">
+                    Events Played
+                </p>
+
+            </div>
+
+            <div>
+
+                <h2 class="counter text-5xl md:text-6xl font-extrabold text-purple-400"
+                    data-target="100">
+                    0
+                </h2>
+
+                <p class="text-gray-300 mt-3">
+                    Happy Clients
+                </p>
+
+            </div>
+
+            <div>
+
+                <h2 class="counter text-5xl md:text-6xl font-extrabold text-purple-400"
+                    data-target="5">
+                    0
+                </h2>
+
+                <p class="text-gray-300 mt-3">
+                    Years Experience
+                </p>
+
+            </div>
+
+            <div>
+
+                <h2 class="text-5xl md:text-6xl font-extrabold text-yellow-400">
+
+                    ★ 4.9
+
+                </h2>
+
+                <p class="text-gray-300 mt-3">
+
+                    Average Rating
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -54,7 +146,7 @@ Listen Live
 
 <h2 class="text-5xl font-bold text-center">
 
-Why Choose DJ Empire?
+Why Choose DJ CHOPPA_xL?
 
 </h2>
 
@@ -135,6 +227,107 @@ We transform ordinary events into unforgettable experiences.
 </div>
 
 </div>
+
+</section>
+
+<!-- ================= FEATURED EVENT ================= -->
+
+<section class="py-24 bg-white">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center mb-14">
+
+            <h2 class="text-5xl font-bold">
+
+                🔥 Upcoming Event
+
+            </h2>
+
+            <p class="text-gray-600 mt-4">
+
+                Don't miss our next performance.
+
+            </p>
+
+        </div>
+
+        {% if featured_event %}
+
+        <div class="grid lg:grid-cols-2 gap-12 items-center bg-slate-100 rounded-3xl shadow-2xl overflow-hidden">
+
+            <div>
+
+                <img src="{{ featured_event.image.url }}"
+                     class="w-full h-full object-cover"
+                     alt="{{ featured_event.title }}">
+
+            </div>
+
+            <div class="p-10">
+
+                <span class="inline-block bg-yellow-400 text-black px-4 py-2 rounded-full font-bold">
+
+                    ⭐ Featured Event
+
+                </span>
+
+                <h2 class="text-5xl font-bold mt-6">
+
+                    {{ featured_event.title }}
+
+                </h2>
+
+                <div class="space-y-4 mt-8 text-lg">
+
+                    <p>📍 <strong>Venue:</strong> {{ featured_event.venue }}</p>
+
+                    <p>📅 <strong>Date:</strong> {{ featured_event.event_date }}</p>
+
+                    <p>🕒 <strong>Time:</strong> {{ featured_event.event_time }}</p>
+
+                    <p>💰 <strong>Entry:</strong> KSh {{ featured_event.ticket_price }}</p>
+
+                </div>
+
+                <p class="mt-8 text-gray-700">
+
+                    {{ featured_event.description|truncatewords:35 }}
+
+                </p>
+
+                <a href="{% url 'events' %}"
+                   class="inline-block mt-10 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-xl hover:opacity-90 transition">
+
+                    🎟 View All Events
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <div class="text-center py-16">
+
+            <h3 class="text-3xl font-bold">
+
+                No Upcoming Events
+
+            </h3>
+
+            <p class="text-gray-500 mt-4">
+
+                Check back soon for our next event.
+
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
 
 </section>
 

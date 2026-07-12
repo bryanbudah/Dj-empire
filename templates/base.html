@@ -3,6 +3,8 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 
     <meta charset="UTF-8">
 
@@ -82,8 +84,23 @@
 </a>
 
     <!-- JavaScript -->
-    {% include "includes/scripts.html" %}
+{% include "includes/scripts.html" %}
 
+<!-- GLightbox JS -->
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+<script>
+const lightbox = GLightbox({
+    selector: ".glightbox",
+    touchNavigation: true,
+    keyboardNavigation: true,
+    loop: true,
+    openEffect: "zoom",
+    closeEffect: "fade",
+    slideEffect: "slide"
+});
+</script>
 </body>
+
 
 </html>

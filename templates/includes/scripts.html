@@ -2,3 +2,84 @@
 
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
+
+<script>
+const counters = document.querySelectorAll(".counter");
+
+const animateCounters = () => {
+
+    counters.forEach(counter => {
+
+        const target = +counter.dataset.target;
+
+        let count = 0;
+
+        const speed = target / 120;
+
+        const update = () => {
+
+            count += speed;
+
+            if (count < target) {
+
+                counter.innerText = Math.ceil(count);
+
+                requestAnimationFrame(update);
+
+            } else {
+
+                counter.innerText = target + "+";
+
+            }
+
+        };
+
+        update();
+
+    });
+
+};
+
+const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            animateCounters();
+
+            observer.disconnect();
+
+        }
+
+    });
+
+});
+
+observer.observe(document.querySelector(".counter"));
+
+const themeToggle = document.getElementById("theme-toggle");
+
+const html = document.documentElement;
+
+if(localStorage.theme==="dark"){
+    html.classList.add("dark");
+}
+
+themeToggle?.addEventListener("click",()=>{
+
+    html.classList.toggle("dark");
+
+    if(html.classList.contains("dark")){
+
+        localStorage.theme="dark";
+
+    }else{
+
+        localStorage.theme="light";
+
+    }
+
+});
+
+</script>

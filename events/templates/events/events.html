@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+Upcoming Events | DJ Empire
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-purple-700 via-blue-700 to-slate-900 py-20">
+
+    <div class="max-w-6xl mx-auto px-6 text-center">
+
+        <h1 class="text-5xl font-extrabold text-white">
+
+            Upcoming Events
+
+        </h1>
+
+        <p class="text-gray-300 mt-4 text-lg">
+
+            Catch DJ Empire live at weddings, clubs, festivals, corporate events and private parties.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- Events -->
+<section class="max-w-7xl mx-auto py-20 px-6">
+
+{% if events %}
+
+<div class="grid lg:grid-cols-2 gap-10">
+
+{% for event in events %}
+
+<div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-500">
+
+    {% if event.image %}
+    <img src="{{ event.image.url }}"
+            class="w-full object-contain rounded-xl"
+         alt="{{ event.title }}">
+    {% endif %}
+
+    <div class="p-8">
+
+        {% if event.is_featured %}
+        <span class="bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-bold">
+            ⭐ Featured Event
+        </span>
+        {% endif %}
+
+        <h2 class="text-3xl font-bold mt-4">
+
+            {{ event.title }}
+
+        </h2>
+
+        <div class="mt-6 space-y-3 text-gray-700">
+
+            <p>
+                📍 <strong>Venue:</strong>
+                {{ event.venue }}
+            </p>
+
+            <p>
+                📅 <strong>Date:</strong>
+                {{ event.event_date }}
+            </p>
+
+            <p>
+                🕒 <strong>Time:</strong>
+                {{ event.event_time }}
+            </p>
+
+            <p>
+                💰 <strong>Entry:</strong>
+
+                {% if event.ticket_price %}
+                    {{ event.ticket_price }}
+                {% else %}
+                    FREE
+                {% endif %}
+
+            </p>
+
+        </div>
+
+        <p class="mt-6 text-gray-600">
+
+            {{ event.description }}
+
+        </p>
+
+        <a href="{% url 'booking' %}"
+           class="inline-block mt-8 bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 text-white px-8 py-3 rounded-xl font-semibold">
+
+            🎧 Book DJ Empire
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="text-center py-20">
+
+    <h2 class="text-4xl font-bold">
+
+        No Upcoming Events
+
+    </h2>
+
+    <p class="text-gray-500 mt-4">
+
+        Check back soon for our next event.
+
+    </p>
+
+</div>
+
+{% endif %}
+
+</section>
+
+{% endblock %}

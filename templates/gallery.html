@@ -1,21 +1,149 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
-<div class="max-w-7xl mx-auto px-6 py-24">
+<!-- Hero -->
+<section class="bg-gradient-to-r from-purple-700 via-blue-700 to-slate-900 py-20">
 
-<h1 class="text-5xl font-bold text-center">
+    <div class="max-w-7xl mx-auto px-6 text-center">
 
-Gallery
+        <h1 class="text-5xl md:text-6xl font-bold text-white">
+            DJ Empire Gallery
+        </h1>
 
-</h1>
+        <p class="text-gray-300 mt-5 text-lg max-w-3xl mx-auto">
+            Relive unforgettable moments from weddings, birthdays, corporate events,
+            graduations and private celebrations.
+        </p>
 
-<p class="mt-6 text-center text-gray-600">
+    </div>
 
-Photos and videos from our amazing events will appear here.
+</section>
 
-</p>
+<!-- Gallery -->
+<section class="max-w-7xl mx-auto px-6 py-20">
 
-</div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Corporate -->
+        <a href="{% static 'images/gallery/corprate1.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/corprate1.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/corprate2.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/corprate2.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/corprate3.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/corprate3.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/corprate4.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/corprate4.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <!-- Crowd -->
+        <a href="{% static 'images/gallery/birthday1.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/birthday1.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/crowd2.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/crowd2.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/crowd3.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/crowd3.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/crowd5.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/crowd5.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/crowd6.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/crowd6.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/crowd7.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/crowd7.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/crowd8.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/crowd8.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <!-- Main -->
+        <a href="{% static 'images/gallery/main9.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/main9.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/mainoption.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/mainoption.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/mainpicture.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/mainpicture.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <!-- Others -->
+        <a href="{% static 'images/gallery/real1.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/real1.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/soundsystem.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/soundsystem.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/stage.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/stage.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/stage2.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/stage2.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/black.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/black.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/main5.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/main5.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/main6.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/main6.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+        <a href="{% static 'images/gallery/birthday1.jpg' %}" class="glightbox block overflow-hidden rounded-2xl shadow-xl group" data-gallery="dj-gallery">
+            <img src="{% static 'images/gallery/birthday1.jpg' %}" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+        </a>
+
+    </div>
+
+</section>
+
+<!-- CTA -->
+<section class="bg-gradient-to-r from-purple-700 via-blue-700 to-slate-900 py-20">
+
+    <div class="max-w-5xl mx-auto px-6 text-center">
+
+        <h2 class="text-4xl font-bold text-white">
+            Ready to Book DJ Empire?
+        </h2>
+
+        <p class="text-gray-300 mt-5 text-lg">
+            Let's make your next event unforgettable.
+        </p>
+
+        <a href="{% url 'booking' %}"
+           class="inline-block mt-8 bg-white text-purple-700 px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-gray-100 transition">
+
+            📅 Book Now
+
+        </a>
+
+    </div>
+
+</section>
 
 {% endblock %}
