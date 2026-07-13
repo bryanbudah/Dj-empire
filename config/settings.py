@@ -148,7 +148,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [
     BASE_DIR / "static",]
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" 
+STATICFILES_STORAGE = ("whitenoise.storage.CompressedManifestStaticFilesStorage")
+
+WHITENOISE_AUTOREFRESH = DEBUG
 
 
 MEDIA_URL = "/media/"
@@ -162,3 +164,10 @@ LOGOUT_REDIRECT_URL = "/"
 LOGIN_URL = "/accounts/login/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
