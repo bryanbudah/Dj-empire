@@ -3,6 +3,30 @@ from django.shortcuts import render
 from music.models import Mix
 from reviews.models import Review
 from events.models import Event
+from django.db.models import Q
+from django.http import HttpResponse
+
+def mix_list(request):
+    query = request.GET.get("q", "")
+
+    mixes = Mix.objects.all()
+
+    if query:
+        mixes = mixes.filter(
+            Q(title__icontains=query) |
+            Q(description__icontains=query) |
+            Q(genre__name__icontains=query)
+        )
+
+    most_played = Mix.objects.order_by("-views")[:5]
+
+    context = {
+        "mixes": mixes,
+        "query": query,
+        "most_played": most_played,
+    }
+
+    return render(request, "music/mix_list.html", context)
 
 def home(request):
     featured_mixes = (
@@ -54,3 +78,9 @@ def custom_404(request, exception):
 
 def custom_500(request):
     return render(request, "errors/500.html", status=500)
+
+def robots(request):
+    return HttpResponse(
+        open("templates/robots.txt").read(),
+        content_type="text/plain"
+    )

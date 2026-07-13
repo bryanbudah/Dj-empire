@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "dashboard",
     "reviews",
       "events",
+     "django.contrib.sitemaps",
 ]
 
 MIDDLEWARE = [

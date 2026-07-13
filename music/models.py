@@ -1,4 +1,3 @@
-
 from django.db import models
 
 
@@ -14,32 +13,32 @@ class Mix(models.Model):
 
     genre = models.ForeignKey(
         Genre,
-        on_delete=models.CASCADE,
-        related_name="mixes"
+        on_delete=models.CASCADE
     )
 
     description = models.TextField()
 
     cover_image = models.ImageField(
-        upload_to="mix_covers/"
+        upload_to="mixes/covers/"
     )
 
     audio_file = models.FileField(
-        upload_to="mixes/"
+        upload_to="mixes/audio/"
     )
 
     duration = models.CharField(
         max_length=20,
-        blank=True
+        blank=True,
+        help_text="Example: 1h 15m"
     )
 
-    featured = models.BooleanField(
-        default=False
-    )
+    views = models.PositiveIntegerField(default=0)
 
-    uploaded_at = models.DateTimeField(
-        auto_now_add=True
-    )
+    likes = models.PositiveIntegerField(default=0)
+
+    featured = models.BooleanField(default=False)
+
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title

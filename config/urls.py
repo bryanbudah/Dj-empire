@@ -20,6 +20,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from django.conf.urls import handler404, handler500
+from django.contrib.sitemaps.views import sitemap
+from core.sitemaps import StaticViewSitemap
+
+sitemaps = {
+    "static": StaticViewSitemap(),
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -48,6 +54,13 @@ urlpatterns = [
     "events/",
     include("events.urls"),
 ),
+
+ path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
 ]
 
 if settings.DEBUG:
