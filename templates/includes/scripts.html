@@ -1,150 +1,189 @@
 {% load static %}
 
-<script src="{% static 'js/script.js' %}"></script>
+<!-- Main JavaScript -->
 <script src="{% static 'js/script.js' %}"></script>
 
 <script>
-const counters = document.querySelectorAll(".counter");
 
-const animateCounters = () => {
+document.addEventListener("DOMContentLoaded", function () {
 
-    counters.forEach(counter => {
+    /* =========================
+       Animated Counters
+    ========================== */
 
-        const target = +counter.dataset.target;
+    const counters = document.querySelectorAll(".counter");
 
-        let count = 0;
+    function animateCounters() {
 
-        const speed = target / 120;
+        counters.forEach(counter => {
 
-        const update = () => {
+            const target = Number(counter.dataset.target);
+            let count = 0;
+            const speed = target / 120;
 
-            count += speed;
+            function updateCounter() {
 
-            if (count < target) {
+                count += speed;
 
-                counter.innerText = Math.ceil(count);
+                if (count < target) {
 
-                requestAnimationFrame(update);
+                    counter.innerText = Math.ceil(count);
+                    requestAnimationFrame(updateCounter);
 
-            } else {
+                } else {
 
-                counter.innerText = target + "+";
+                    counter.innerText = target + "+";
+
+                }
 
             }
 
-        };
+            updateCounter();
 
-        update();
+        });
 
-    });
+    }
 
-};
+    if (counters.length > 0) {
 
-const observer = new IntersectionObserver(entries => {
+        const observer = new IntersectionObserver((entries) => {
 
-    entries.forEach(entry => {
+            entries.forEach(entry => {
 
-        if(entry.isIntersecting){
+                if (entry.isIntersecting) {
 
-            animateCounters();
+                    animateCounters();
+                    observer.disconnect();
 
-            observer.disconnect();
+                }
 
-        }
+            });
 
-    });
+        });
 
-});
+        observer.observe(counters[0]);
 
-observer.observe(document.querySelector(".counter"));
+    }
 
-const themeToggle = document.getElementById("theme-toggle");
 
-const html = document.documentElement;
+    /* =========================
+       Dark Mode
+    ========================== */
 
-if(localStorage.theme==="dark"){
-    html.classList.add("dark");
-}
+    const themeToggle = document.getElementById("theme-toggle");
+    const html = document.documentElement;
 
-themeToggle?.addEventListener("click",()=>{
+    if (localStorage.getItem("theme") === "dark") {
 
-    html.classList.toggle("dark");
+        html.classList.add("dark");
 
-    if(html.classList.contains("dark")){
+    }
 
-        localStorage.theme="dark";
+    if (themeToggle) {
 
-    }else{
+        themeToggle.addEventListener("click", () => {
 
-        localStorage.theme="light";
+            html.classList.toggle("dark");
+
+            if (html.classList.contains("dark")) {
+
+                localStorage.setItem("theme", "dark");
+
+            } else {
+
+                localStorage.setItem("theme", "light");
+
+            }
+
+        });
+
+    }
+
+
+    /* =========================
+       Hero Background Slideshow
+    ========================== */
+
+    const slides = document.querySelectorAll(".hero-slide");
+
+    if (slides.length > 1) {
+
+        let current = 0;
+
+        setInterval(() => {
+
+            slides[current].classList.remove("opacity-100");
+            slides[current].classList.add("opacity-0");
+
+            current = (current + 1) % slides.length;
+
+            slides[current].classList.remove("opacity-0");
+            slides[current].classList.add("opacity-100");
+
+        }, 2000);
+
+    }
+
+
+    /* =========================
+       Scroll To Top Button
+    ========================== */
+
+    const topBtn = document.getElementById("scrollTop");
+
+    if (topBtn) {
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 300) {
+
+                topBtn.classList.remove("hidden");
+
+            } else {
+
+                topBtn.classList.add("hidden");
+
+            }
+
+        });
+
+        topBtn.addEventListener("click", () => {
+
+            window.scrollTo({
+
+                top: 0,
+                behavior: "smooth"
+
+            });
+
+        });
 
     }
 
 });
 
-document.addEventListener("DOMContentLoaded", function () {
 
-    const slides = document.querySelectorAll(".hero-slide");
-
-    let current = 0;
-
-    setInterval(() => {
-
-        slides[current].classList.remove("opacity-100");
-        slides[current].classList.add("opacity-0");
-
-        current = (current + 1) % slides.length;
-
-        slides[current].classList.remove("opacity-0");
-        slides[current].classList.add("opacity-100");
-
-    }, 2000);
-
-});
+/* =========================
+   Loader
+========================== */
 
 window.addEventListener("load", function () {
 
     const loader = document.getElementById("loader");
 
-    loader.style.opacity = "0";
+    if (loader) {
 
-    loader.style.transition = "0.5s";
+        loader.style.transition = "opacity 0.5s ease";
+        loader.style.opacity = "0";
 
-    setTimeout(() => {
+        setTimeout(() => {
 
-        loader.remove();
+            loader.remove();
 
-    }, 500);
-
-});
-
-const topBtn = document.getElementById("scrollTop");
-
-window.addEventListener("scroll", ()=>{
-
-    if(window.scrollY > 300){
-
-        topBtn.classList.remove("hidden");
-
-    }else{
-
-        topBtn.classList.add("hidden");
+        }, 500);
 
     }
 
 });
-
-topBtn.onclick=()=>{
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
-}
-
 
 </script>
