@@ -22,3 +22,20 @@ body {
 .card-hover:hover {
     transform: translateY(-8px);
 }
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#0f172a;
+}
+
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(#9333ea,#2563eb);
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#7e22ce;
+}

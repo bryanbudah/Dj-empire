@@ -68,7 +68,21 @@
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
     <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+
+    <link rel="apple-touch-icon" href="{% static 'images/favicon.png' %}">
+
+<meta name="theme-color" content="#6D28D9">
+
+<style>
+    body{
+        font-family:'Poppins', sans-serif;
+    }
+</style>
 
     <style>
         body{
@@ -79,6 +93,24 @@
 </head>
 
 <body class="bg-slate-50 text-slate-800">
+
+<!-- Loader -->
+<div id="loader"
+class="fixed inset-0 bg-slate-900 flex items-center justify-center z-[9999]">
+
+    <div class="text-center">
+
+        <div class="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+
+        <p class="text-white mt-6 text-xl font-bold">
+
+            DJ CHOPPA_xL
+
+        </p>
+
+    </div>
+
+</div>
 
     <!-- Navigation -->
     {% include "includes/navbar.html" %}
@@ -96,6 +128,15 @@
 
     <!-- Footer -->
     {% include "includes/footer.html" %}
+
+<button
+id="scrollTop"
+
+class="fixed bottom-6 left-6 bg-purple-600 text-white w-14 h-14 rounded-full shadow-xl hidden z-50">
+
+↑
+
+</button>
 
 <!-- ================= WHATSAPP FLOATING BUTTON ================= -->
 
