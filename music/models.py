@@ -19,11 +19,11 @@ class Mix(models.Model):
     description = models.TextField()
 
     cover_image = models.ImageField(
-        upload_to="mixes/covers/"
+        upload_to="media/mix_covers/"
     )
 
     audio_file = models.FileField(
-        upload_to="mixes/audio/"
+        upload_to="media/mixes/"
     )
 
     duration = models.CharField(
