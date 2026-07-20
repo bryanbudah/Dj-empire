@@ -49,15 +49,17 @@ class Mix(models.Model):
     @property
     def audio_url(self):
         if self.audio_file:
-            cloud_name = os.getenv('CLOUDINARY_CLOUD_NAME')
-            public_id = str(self.audio_file)
-            return f"https://res.cloudinary.com/{cloud_name}/raw/upload/{public_id}"
+            return cloudinary.CloudinaryResource(
+                str(self.audio_file),
+                resource_type='raw'
+            ).build_url(secure=True)
         return None
 
     @property
     def cover_image_url(self):
         if self.cover_image:
-            cloud_name = os.getenv('CLOUDINARY_CLOUD_NAME')
-            public_id = str(self.cover_image)
-            return f"https://res.cloudinary.com/{cloud_name}/image/upload/{public_id}"
+            return cloudinary.CloudinaryResource(
+                str(self.cover_image),
+                resource_type='image'
+            ).build_url(secure=True)
         return None

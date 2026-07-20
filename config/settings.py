@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ✅ Set this BEFORE importing cloudinary
-os.environ.pop("CLOUDINARY_URL", None)  # Remove bad CLOUDINARY_URL if present
+ # Remove bad CLOUDINARY_URL if present
 
 import cloudinary
 import cloudinary.uploader
