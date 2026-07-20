@@ -4,40 +4,30 @@
 
 <!-- ================= HERO ================= -->
 <section class="bg-gradient-to-r from-purple-700 via-blue-700 to-slate-900 py-20">
-
     <div class="max-w-7xl mx-auto px-6 text-center">
-
         <h1 class="text-5xl md:text-6xl font-extrabold text-white">
             DJ Mixes
         </h1>
-
         <p class="text-gray-300 mt-6 text-xl max-w-3xl mx-auto">
             Stream exclusive Afro House, Amapiano, Hip-Hop, EDM, Deep House and Club Sessions by
             <span class="font-bold text-white">DJ CHOPPA_xL</span>.
         </p>
-
     </div>
-
 </section>
 
 <!-- ================= SEARCH ================= -->
 <section class="max-w-7xl mx-auto px-6 pt-12">
-
     <form method="GET">
-
         <input
             type="text"
             name="q"
             value="{{ query }}"
             placeholder="🔍 Search mixes..."
             class="w-full rounded-2xl border border-gray-300 px-6 py-4 text-lg shadow-md focus:ring-2 focus:ring-purple-600 focus:outline-none">
-
     </form>
-
 </section>
 
 <!-- ================= MIXES ================= -->
-
 <section class="max-w-7xl mx-auto py-14 px-6">
 
 {% if mixes %}
@@ -46,115 +36,86 @@
 
 {% for mix in mixes %}
 
+<!-- TEMPORARY DEBUG — remove after fixing -->
+<p style="color:red;font-size:12px;background:white;padding:10px;">
+    cover_image value: {{ mix.cover_image }}<br>
+    audio_file value: {{ mix.audio_file }}<br>
+    audio_url: {{ mix.audio_url }}<br>
+    cover_url: {{ mix.cover_image_url }}
+</p>
+
 <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-2 transition duration-500">
 
-    <!-- ================= IMAGE ================= -->
-
+    <!-- IMAGE -->
     <div class="relative aspect-video overflow-hidden bg-black">
 
         <img
-            src="{{ mix.cover_image.url }}"
+            src="{{ mix.cover_image_url }}"
             alt="{{ mix.title }}"
             class="w-full h-full object-contain transition duration-700 hover:scale-110">
 
         {% if mix.featured %}
-
         <div class="absolute top-4 left-4">
-
             <span class="bg-yellow-400 text-black px-4 py-2 rounded-full font-bold text-sm shadow-lg">
-
                 🔥 Featured Mix
-
             </span>
-
         </div>
-
         {% endif %}
 
         <!-- Play Overlay -->
-
         <div class="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition duration-300 flex justify-center items-center">
-
             <div class="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center text-4xl shadow-xl">
-
                 ▶
-
             </div>
-
         </div>
 
     </div>
 
-    <!-- ================= CONTENT ================= -->
-
+    <!-- CONTENT -->
     <div class="p-6">
 
         <h2 class="text-3xl font-bold text-slate-800">
-
             {{ mix.title }}
-
         </h2>
 
         <!-- Genre -->
-
         <span class="inline-block mt-3 bg-purple-100 text-purple-700 px-4 py-2 rounded-full font-semibold text-sm">
-
             🎵 {{ mix.genre }}
-
         </span>
 
         <!-- Stats -->
-
         <div class="flex flex-wrap gap-5 mt-5 text-gray-500 text-sm">
-
             <span>👁 {{ mix.views }}</span>
-
             <span>❤️ {{ mix.likes }}</span>
-
             <span>⏱ {{ mix.duration }}</span>
-
         </div>
 
         <!-- Description -->
-
         <p class="mt-5 text-gray-600 leading-relaxed">
-
             {{ mix.description|truncatewords:22 }}
-
         </p>
 
         <!-- Audio -->
-
         <div class="mt-6">
-
             <audio controls preload="auto" class="w-full">
-
-                <source src="{{ mix.audio_file.url }}" type="audio/mpeg">
-
+                <source src="{{ mix.audio_url }}" type="audio/mpeg">
                 Your browser does not support audio.
-
             </audio>
-
         </div>
 
         <!-- Buttons -->
-
         <div class="mt-6 grid grid-cols-2 gap-4">
 
-            <a href="{{ mix.audio_file.url }}"
+            <a href="{{ mix.audio_url }}"
                target="_blank"
                class="bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center py-3 rounded-xl font-semibold hover:opacity-90 transition">
-
                 ▶ Listen
-
             </a>
 
-            <a href="{{ mix.audio_file.url }}"
+            <a href="{{ mix.audio_url }}"
                download
                class="border-2 border-purple-600 text-purple-600 text-center py-3 rounded-xl font-semibold hover:bg-purple-600 hover:text-white transition">
-
                 ⬇ Download
-
             </a>
 
         </div>
@@ -170,25 +131,9 @@
 {% else %}
 
 <div class="text-center py-24">
-
-    <div class="text-7xl mb-6">
-
-        🎧
-
-    </div>
-
-    <h2 class="text-4xl font-bold">
-
-        No Mixes Uploaded Yet
-
-    </h2>
-
-    <p class="text-gray-500 mt-4 text-lg">
-
-        DJ CHOPPA_xL hasn't uploaded any mixes yet.
-
-    </p>
-
+    <div class="text-7xl mb-6">🎧</div>
+    <h2 class="text-4xl font-bold">No Mixes Uploaded Yet</h2>
+    <p class="text-gray-500 mt-4 text-lg">DJ CHOPPA_xL hasn't uploaded any mixes yet.</p>
 </div>
 
 {% endif %}
@@ -198,216 +143,75 @@
 {% endblock %}
 
 <!-- ================= MOST PLAYED MIXES ================= -->
-
 <section class="bg-slate-900 py-20 mt-20">
-
     <div class="max-w-7xl mx-auto px-6">
-
         <div class="text-center mb-14">
-
-            <h2 class="text-5xl font-bold text-white">
-
-                🔥 Most Played Mixes
-
-            </h2>
-
-            <p class="text-gray-400 mt-4">
-
-                Fan favourites from DJ CHOPPA_xL
-
-            </p>
-
+            <h2 class="text-5xl font-bold text-white">🔥 Most Played Mixes</h2>
+            <p class="text-gray-400 mt-4">Fan favourites from DJ CHOPPA_xL</p>
         </div>
 
         <div class="max-w-4xl mx-auto space-y-5">
 
             <!-- 1 -->
             <div class="flex justify-between items-center bg-slate-800 rounded-2xl px-8 py-6 hover:bg-purple-700 transition">
-
                 <div class="flex items-center gap-6">
-
-                    <span class="text-4xl font-bold text-purple-400">
-
-                        #1
-
-                    </span>
-
+                    <span class="text-4xl font-bold text-purple-400">#1</span>
                     <div>
-
-                        <h3 class="text-white text-2xl font-bold">
-
-                            Afro House Vol. 5
-
-                        </h3>
-
-                        <p class="text-gray-300">
-
-                            Afro House
-
-                        </p>
-
+                        <h3 class="text-white text-2xl font-bold">Afro House Vol. 5</h3>
+                        <p class="text-gray-300">Afro House</p>
                     </div>
-
                 </div>
-
-                <span class="text-purple-300">
-
-                    👁 12.5K Plays
-
-                </span>
-
+                <span class="text-purple-300">👁 12.5K Plays</span>
             </div>
 
             <!-- 2 -->
             <div class="flex justify-between items-center bg-slate-800 rounded-2xl px-8 py-6 hover:bg-purple-700 transition">
-
                 <div class="flex items-center gap-6">
-
-                    <span class="text-4xl font-bold text-purple-400">
-
-                        #2
-
-                    </span>
-
+                    <span class="text-4xl font-bold text-purple-400">#2</span>
                     <div>
-
-                        <h3 class="text-white text-2xl font-bold">
-
-                            Amapiano Nights
-
-                        </h3>
-
-                        <p class="text-gray-300">
-
-                            Amapiano
-
-                        </p>
-
+                        <h3 class="text-white text-2xl font-bold">Amapiano Nights</h3>
+                        <p class="text-gray-300">Amapiano</p>
                     </div>
-
                 </div>
-
-                <span class="text-purple-300">
-
-                    👁 10.9K Plays
-
-                </span>
-
+                <span class="text-purple-300">👁 10.9K Plays</span>
             </div>
 
             <!-- 3 -->
             <div class="flex justify-between items-center bg-slate-800 rounded-2xl px-8 py-6 hover:bg-purple-700 transition">
-
                 <div class="flex items-center gap-6">
-
-                    <span class="text-4xl font-bold text-purple-400">
-
-                        #3
-
-                    </span>
-
+                    <span class="text-4xl font-bold text-purple-400">#3</span>
                     <div>
-
-                        <h3 class="text-white text-2xl font-bold">
-
-                            Kenyan Hip Hop Vol. 1
-
-                        </h3>
-
-                        <p class="text-gray-300">
-
-                            Hip Hop
-
-                        </p>
-
+                        <h3 class="text-white text-2xl font-bold">Kenyan Hip Hop Vol. 1</h3>
+                        <p class="text-gray-300">Hip Hop</p>
                     </div>
-
                 </div>
-
-                <span class="text-purple-300">
-
-                    👁 9.4K Plays
-
-                </span>
-
+                <span class="text-purple-300">👁 9.4K Plays</span>
             </div>
 
             <!-- 4 -->
             <div class="flex justify-between items-center bg-slate-800 rounded-2xl px-8 py-6 hover:bg-purple-700 transition">
-
                 <div class="flex items-center gap-6">
-
-                    <span class="text-4xl font-bold text-purple-400">
-
-                        #4
-
-                    </span>
-
+                    <span class="text-4xl font-bold text-purple-400">#4</span>
                     <div>
-
-                        <h3 class="text-white text-2xl font-bold">
-
-                            Deep House Sessions
-
-                        </h3>
-
-                        <p class="text-gray-300">
-
-                            Deep House
-
-                        </p>
-
+                        <h3 class="text-white text-2xl font-bold">Deep House Sessions</h3>
+                        <p class="text-gray-300">Deep House</p>
                     </div>
-
                 </div>
-
-                <span class="text-purple-300">
-
-                    👁 8.8K Plays
-
-                </span>
-
+                <span class="text-purple-300">👁 8.8K Plays</span>
             </div>
 
             <!-- 5 -->
             <div class="flex justify-between items-center bg-slate-800 rounded-2xl px-8 py-6 hover:bg-purple-700 transition">
-
                 <div class="flex items-center gap-6">
-
-                    <span class="text-4xl font-bold text-purple-400">
-
-                        #5
-
-                    </span>
-
+                    <span class="text-4xl font-bold text-purple-400">#5</span>
                     <div>
-
-                        <h3 class="text-white text-2xl font-bold">
-
-                            Club Bangers
-
-                        </h3>
-
-                        <p class="text-gray-300">
-
-                            Club Mix
-
-                        </p>
-
+                        <h3 class="text-white text-2xl font-bold">Club Bangers</h3>
+                        <p class="text-gray-300">Club Mix</p>
                     </div>
-
                 </div>
-
-                <span class="text-purple-300">
-
-                    👁 7.6K Plays
-
-                </span>
-
+                <span class="text-purple-300">👁 7.6K Plays</span>
             </div>
 
         </div>
-
     </div>
-
 </section>
