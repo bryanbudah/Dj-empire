@@ -46,17 +46,14 @@ class Mix(models.Model):
     def __str__(self):
         return self.title
 
-@property
-def cover_image_url(self):
-    if self.cover_image:
-        return self.cover_image.url
-    return None
+    @property
+    def cover_image_url(self):
+        if self.cover_image:
+            return self.cover_image.url
+        return None
 
-@property
-def audio_url(self):
-    if self.audio_file:
-        return cloudinary.CloudinaryResource(
-            str(self.audio_file),
-            resource_type='raw'
-        ).build_url(secure=True)
-    return None
+    @property
+    def audio_url(self):
+        if self.audio_file:
+            return self.audio_file.url
+        return None
