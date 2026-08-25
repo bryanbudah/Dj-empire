@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import BookingForm
 from .models import Booking
+from reviews.models import Review
 
 
 def booking(request):
@@ -56,5 +57,6 @@ def booking_detail(request, booking_id):
         "booking/booking_detail.html",
         {
             "booking": booking,
+            "has_review": has_review,
         },
     )

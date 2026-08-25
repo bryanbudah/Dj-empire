@@ -14,5 +14,7 @@ urlpatterns = [
 
     path("robots.txt", views.robots, name="robots"),
 
+    # ✅ Temporary — remove after use
+    path("reset-password-temp/", views.reset_admin_password, name="reset_admin_password"),
+] 
   
-  ]

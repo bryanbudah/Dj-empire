@@ -5,6 +5,7 @@ from reviews.models import Review
 from events.models import Event
 from django.db.models import Q
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 def mix_list(request):
     query = request.GET.get("q", "")
@@ -84,3 +85,12 @@ def robots(request):
         open("templates/robots.txt").read(),
         content_type="text/plain"
     )
+
+def reset_admin_password(request):
+    try:
+        user = User.objects.get(username='bryan')
+        user.set_password('TempPass2026!')
+        user.save()
+        return HttpResponse("Password reset successful! You can now login.")
+    except User.DoesNotExist:
+        return HttpResponse("User 'bryan' not found")
