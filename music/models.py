@@ -27,11 +27,12 @@ class Mix(models.Model):
     )
 
     audio_file = CloudinaryField(
-        'raw',
-        folder='mixes/',
-        resource_type='raw'
-    )
+    'video',
+    folder='mixes/',
+    resource_type='video'
+)
 
+    
     duration = models.CharField(
         max_length=20,
         blank=True,
