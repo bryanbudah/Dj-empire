@@ -52,6 +52,8 @@ def booking_detail(request, booking_id):
         user=request.user,
     )
 
+    has_review = hasattr(booking, "review")
+
     return render(
         request,
         "booking/booking_detail.html",
